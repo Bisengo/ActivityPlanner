@@ -1,0 +1,36 @@
+@model Activy
+
+<div class="card">
+    <a href="/dashboard"><b><u>Home</u></b></a>
+    <a href="/logout"><b><u>Logout</u></b></a>
+    <h1 class="card-header text-center">@Model.Title</h1>
+    <div class="card-body">
+        <p class="card-text">Brought to You By: @Model.Organizer.FirstName @Model.Organizer.LastName</p>
+        <p class="card-text">Date: @Model.ActDateTime</p>
+        <p class="card-text">Description: @Model.Description</p>
+        <h4 class="card-text">Participants: </h4>
+        <ul>
+            @foreach(var a in Model.Attendees)
+            {
+                <li class="list-group-item">@a.ActEnjoyer.FirstName @a.ActEnjoyer.LastName</li>
+            }
+        </ul>
+        <div>
+            @if(ViewBag.User.UserId == Model.Organizer.UserId)
+            {
+                <a class="btn btn-danger" href="/cancel/@Model.ActivyId">Cancel Activity</a>
+            }
+            else
+            {
+                if(Model.Attendees.Any(a => a.UserId == ViewBag.User.UserId))
+                {
+                    <a href="/leave/@Model.ActivyId" class="btn btn-primary">Leave Activity</a>
+                }
+                else
+                {
+                    <a href="/join/@Model.ActivyId" class="btn btn-success">Join Activity</a>                           
+                }
+            }
+        </div>
+    </div>
+</div>

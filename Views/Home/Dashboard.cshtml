@@ -1,0 +1,50 @@
+@model List<Activy>
+
+<h1 class="card bg-light text-center">Welcome To The Activity Center, @ViewBag.User.FirstName!</h1>
+
+<table class="table-warning table">
+    <thead class="bg-dark text-warning">
+        <tr>
+            <th>Activity</th>
+            <th>Date @@ Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Particpants</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var m in Model)
+        {
+            <tr>
+                <td><a href="/show/@m.ActivyId">@m.Title</a></td>
+                <td>@m.ActDateTime</td>
+                <td>@m.Duration @m.DurationUnit</td>
+                <td>@m.Organizer.FirstName @m.Organizer.LastName</td>
+                <td>@m.Attendees.Count</td>
+                <td>
+                    @if(ViewBag.User.UserId == m.Organizer.UserId)
+                    {
+                        <a class="btn btn-danger" href="/cancel/@m.ActivyId">Cancel Activity</a>
+                    }
+                    else
+                    {
+                        if(m.Attendees.Any(asc => asc.UserId == ViewBag.User.UserId))
+                        {
+                            <a href="/leave/@m.ActivyId" class="btn btn-primary">Leave Activity</a>
+                        }
+                        else
+                        {
+                            <a href="/join/@m.ActivyId" class="btn btn-success">Join Activity</a>                           
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<a href="/new" class="btn btn-success"><b><u>Add New Activity</u></b></a>
+
+<a href="/logout" class="btn btn-danger"><b><u>Logout</u></b></a>

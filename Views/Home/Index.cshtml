@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model UserForm
+
+<div class="row justify-between">
+    <form action="/register" class="rounded bg-light card col-5 mx-auto p-4" method="post" class="col-5">
+        <h2 class="text-center">Register To This Cool Site</h2>
+        <div class="form-group">
+            <label asp-for="Register.FirstName"></label>
+            <input asp-for="Register.FirstName" class="form-control">
+            <span class="text-danger" asp-validation-for="Register.FirstName"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Register.LastName"></label>
+            <input asp-for="Register.LastName" class="form-control">
+            <span class="text-danger" asp-validation-for="Register.LastName"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Register.Email"></label>
+            <input asp-for="Register.Email" class="form-control">
+            <span class="text-danger" asp-validation-for="Register.Email"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Register.Password"></label>
+            <input asp-for="Register.Password" class="form-control">
+            <span class="text-danger" asp-validation-for="Register.Password"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Register.ConfirmPassword"></label>
+            <input asp-for="Register.ConfirmPassword" class="form-control">
+            <span class="text-danger" asp-validation-for="Register.ConfirmPassword"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Register Now">
+    </form>
+
+    <form action="/login" class="rounded bg-light card col-5 mx-auto p-4" method="post" class="col-5">
+        <h2 class="text-center">Login</h2>
+        <div class="form-group">
+            <label asp-for="Login.LoginEmail"></label>
+            <input asp-for="Login.LoginEmail" class="form-control">
+            <span class="text-danger" asp-validation-for="Login.LoginEmail"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Login.LoginPassword"></label>
+            <input asp-for="Login.LoginPassword" class="form-control">
+            <span class="text-danger" asp-validation-for="Login.LoginPassword"></span>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Login Now">
+    </form>
+</div> 
